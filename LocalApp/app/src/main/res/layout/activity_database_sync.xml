@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:scrollbarStyle="outsideOverlay"
+    tools:context=".DatabaseSyncActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/txt_num_tables"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="20dp"
+            android:text="No. of Tables"
+            android:textColor="@android:color/black"
+            android:textSize="18dp" />
+
+        <EditText
+            android:id="@+id/etxt_num_tables"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/txt_num_tables"
+            android:inputType="number"
+            android:maxLength="3" />
+
+
+        <TextView
+            android:id="@+id/txt_num_entries"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="20dp"
+            android:text="No. of Entries"
+            android:textColor="@android:color/black"
+            android:textSize="18dp" />
+
+        <EditText
+            android:id="@+id/etxt_num_entries"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/txt_num_entries"
+            android:inputType="number"
+            android:maxLength="4" />
+
+        <Button
+            android:id="@+id/create_fresh_tables_btn"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/etxt_num_entries"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorPrimary"
+            android:text="Create Fresh Tables"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:id="@+id/txt_sync_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/create_fresh_tables_btn"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:text="Select your Sync type"
+            android:textColor="@android:color/black"
+            android:textSize="18dp" />
+
+        <RadioGroup
+            android:id="@+id/radio_btn_group_sync_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_sync_type"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/native_radio_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="true"
+                android:onClick="onSyncTypeRadioButtonClick"
+                android:text="Native" />
+
+            <RadioButton
+                android:id="@+id/op_log_radio_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="false"
+                android:onClick="onSyncTypeRadioButtonClick"
+                android:text="Op Log" />
+
+            <RadioButton
+                android:id="@+id/multi_db_radio_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="false"
+                android:onClick="onSyncTypeRadioButtonClick"
+                android:text="Multi DB" />
+
+            <RadioButton
+                android:id="@+id/file_chunk_radio_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="false"
+                android:onClick="onSyncTypeRadioButtonClick"
+                android:text="File Chunk" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/txt_operation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/radio_btn_group_sync_type"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:text="Select the Operation"
+            android:textColor="@android:color/black"
+            android:textSize="18dp" />
+
+        <RadioGroup
+            android:id="@+id/radio_btn_group_opr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_operation"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/insert_radio_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="Insert" />
+
+            <RadioButton
+                android:id="@+id/update_radio_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="false"
+                android:text="Update" />
+
+            <RadioButton
+                android:id="@+id/delete_radio_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="false"
+                android:text="Delete" />
+
+            <RadioButton
+                android:id="@+id/delete_all_radio_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="false"
+                android:text="Delete All" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/txt_operation_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/radio_btn_group_opr"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:text="Select the type of Operation"
+            android:textColor="@android:color/black"
+            android:textSize="18dp" />
+
+        <RadioGroup
+            android:id="@+id/radio_btn_group_opr_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_operation_type"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/single_opr_radio_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="true"
+                android:onClick="onOprTypeRadioButtonClicked"
+                android:text="Single" />
+
+            <RadioButton
+                android:id="@+id/multi_opr_radio_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="false"
+                android:onClick="onOprTypeRadioButtonClicked"
+                android:text="Multi" />
+
+            <RadioButton
+                android:id="@+id/random_opr_radio_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="false"
+                android:onClick="onOprTypeRadioButtonClicked"
+                android:text="Random" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/txt_num_of_tables"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/radio_btn_group_opr_type"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:text="No. of Tables"
+            android:textColor="@android:color/black"
+            android:textSize="18dp"
+            android:visibility="gone" />
+
+        <EditText
+            android:id="@+id/etxt_num_of_tables"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/txt_num_of_tables"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:inputType="number"
+            android:maxLength="3"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/txt_num_of_opr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/radio_btn_group_opr_type"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="20dp"
+            android:text="No. of Operations"
+            android:textColor="@android:color/black"
+            android:textSize="18dp"
+            android:visibility="gone" />
+
+        <EditText
+            android:id="@+id/etxt_num_of_opr"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/txt_num_of_opr"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="20dp"
+            android:inputType="number"
+            android:maxLength="3"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/execute_btn"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/etxt_num_of_opr"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:background="@color/colorPrimary"
+            android:text="Execute Operations"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:id="@+id/txt_full_system_testing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/execute_btn"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:text="Full System Testing"
+            android:textColor="@android:color/black"
+            android:textSize="18dp" />
+
+
+        <LinearLayout
+            android:id="@+id/LinearLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/txt_full_system_testing">
+
+            <Button
+                android:id="@+id/latency_test_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginEnd="1dp"
+                android:layout_weight="1"
+                android:background="@color/colorPrimary"
+                android:text="Latency Test"
+                android:textColor="@android:color/white" />
+
+
+            <Button
+                android:id="@+id/throughput_test_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginStart="1dp"
+                android:layout_weight="1"
+                android:background="@color/colorPrimary"
+                android:text="Throughput Test"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>

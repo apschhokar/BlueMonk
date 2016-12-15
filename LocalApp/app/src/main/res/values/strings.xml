@@ -1,0 +1,11 @@
+<resources>
+    <string name="main_app_name">BlueMountain Client</string>
+    <string name="pluggable_fs_app_name">Pluggable File System Approach</string>
+    <string name="database_sync_app_name">Database Sync Approach</string>
+
+    <string name="txt_op_log">Operational Log Approach</string>
+    <string name="txt_multi_db">Multi Database Approach</string>
+    <string name="txt_file_chunk">File Chunk Approach</string>
+
+    <string name="action_settings">Settings</string>
+</resources>
